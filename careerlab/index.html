@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PM Career Lab @ Columbia PDL</title>
+    <meta name="description" content="Product Management career resources and LinkedIn connection for Micah Berman" />
+    <meta name="author" content="Micah Berman" />
+
+    <meta property="og:title" content="PM Career Lab - Columbia PDL" />
+    <meta property="og:description" content="Product Management career resources and LinkedIn connection for Micah Berman" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        color: #ffffff;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 32rem;
+        margin: 0 auto;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .title {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .subtitle {
+        font-size: 1.25rem;
+        opacity: 0.9;
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .profile-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+        font-weight: 600;
+        font-size: 1.125rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .profile-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .profile-button:hover .emoji {
+        transform: scale(1.1);
+      }
+
+      .footer {
+        text-align: center;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 640px) {
+        .title {
+          font-size: 2.5rem;
+        }
+        
+        .profile-button {
+          padding: 1.25rem;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 class="title">PM Career Lab</h1>
+        <p class="subtitle">at Columbia PDL</p>
+      </div>
+      
+      <div class="buttons-container">
+        <a 
+          href="https://www.linkedin.com/in/micahberman/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="profile-button"
+        >
+          <span class="emoji">🔗</span>
+          <span>Connect on LinkedIn</span>
+        </a>
+        
+        <a 
+          href="/cl_cheatsheet.pdf"
+          class="profile-button"
+        >
+          <span class="emoji">📋</span>
+          <span>PM Career Lab Cheat Sheet</span>
+        </a>
+        
+        <a 
+          href="/cl_deck.pdf"
+          class="profile-button"
+        >
+          <span class="emoji">📊</span>
+          <span>PM Career Lab Deck</span>
+        </a>
+      </div>
+      
+      <div class="footer">
+        <p>Questions? mic@hberman.org</p>
+      </div>
+    </div>
+  </body>
+</html>
