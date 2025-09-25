@@ -6,17 +6,14 @@
     <title>PM Career Lab @ Columbia PDL</title>
     <meta name="description" content="Product Management career resources and LinkedIn connection for Micah Berman" />
     <meta name="author" content="Micah Berman" />
-    <meta name="robots" content="noindex">
-
 
     <meta property="og:title" content="PM Career Lab - Columbia PDL" />
     <meta property="og:description" content="Product Management career resources and LinkedIn connection for Micah Berman" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PM Career Lab - Columbia PDL" />
+    <meta name="twitter:description" content="Product Management career resources and LinkedIn connection for Micah Berman" />
 
     <style>
       * {
@@ -48,10 +45,22 @@
       }
 
       .title {
-        font-size: 3rem;
         font-weight: bold;
         margin-bottom: 1rem;
         line-height: 1.2;
+      }
+
+      .title-the {
+        font-size: 1.5rem;
+        font-weight: normal;
+        opacity: 0.8;
+        margin-bottom: 0.5rem;
+      }
+
+      .title-main {
+        font-size: 3rem;
+        font-weight: bold;
+        line-height: 1.1;
       }
 
       .subtitle {
@@ -69,7 +78,7 @@
       .profile-button {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 1rem;
         width: 100%;
         max-width: 28rem;
@@ -107,9 +116,167 @@
         opacity: 0.8;
       }
 
+      /* Survey Styles */
+      .survey-section {
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto;
+      }
+
+      .survey-container {
+        position: relative;
+      }
+
+      .survey-button {
+        cursor: pointer;
+        border: none;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+      }
+
+      .survey-drawer {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        opacity: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+        border-radius: 0 0 0.75rem 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: none;
+        backdrop-filter: blur(10px);
+        width: 95%;
+        margin: 0 auto;
+      }
+
+      .survey-drawer.expanded {
+        max-height: 500px;
+        opacity: 1;
+      }
+
+      .drawer-header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.75rem 1rem 0;
+      }
+
+      .collapse-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .collapse-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+      }
+
+      .survey-form {
+        padding: 0 1.5rem 1.5rem;
+      }
+
+      .question {
+        margin-bottom: 1.5rem;
+      }
+
+      .question label {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .star-rating {
+        display: flex;
+        gap: 0.25rem;
+        margin-bottom: 0.25rem;
+        justify-content: center;
+      }
+
+      .star {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
+      }
+
+      .star:hover,
+      .star.active {
+        color: #fbbf24;
+        transform: scale(1.1);
+      }
+
+      .star:hover ~ .star {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        color: white;
+        font-family: inherit;
+        font-size: 0.9rem;
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+      }
+
+      .submit-btn:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.25));
+        transform: translateY(-1px);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Recommended reading link hover effects */
+      .reading-link:hover {
+        text-decoration: underline !important;
+      }
+
       @media (max-width: 640px) {
-        .title {
+        .title-main {
           font-size: 2.5rem;
+        }
+
+        .title-the {
+          font-size: 1.25rem;
         }
         
         .profile-button {
@@ -123,11 +290,162 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1 class="title">The PM Career Lab</h1>
+        <div class="title">
+          <div class="title-the">The</div>
+          <div class="title-main">Product Management</div>
+          <div class="title-main">Career Lab</div>
+        </div>
         <p class="subtitle">@ Columbia PDL</p>
       </div>
       
       <div class="buttons-container">
+        <div class="survey-section">
+          <div class="survey-container">
+            <button class="profile-button survey-button" onclick="toggleSurvey()">
+              <span class="emoji">⭐</span>
+              <span>Leave anonymous feedback</span>
+            </button>
+            
+            <div id="surveyDrawer" class="survey-drawer">
+              <form class="survey-form" onsubmit="handleSubmit(event)" style="padding: 1.5rem;">
+                <div class="question">
+                  <label>Was this class a good use of your time?</label>
+                  <div class="star-rating">
+                    <span class="star" data-rating="1" onclick="setRating(1)" onmouseenter="showRatingText(1)" onmouseleave="hideRatingText()">★</span>
+                    <span class="star" data-rating="2" onclick="setRating(2)" onmouseenter="showRatingText(2)" onmouseleave="hideRatingText()">★</span>
+                    <span class="star" data-rating="3" onclick="setRating(3)" onmouseenter="showRatingText(3)" onmouseleave="hideRatingText()">★</span>
+                    <span class="star" data-rating="4" onclick="setRating(4)" onmouseenter="showRatingText(4)" onmouseleave="hideRatingText()">★</span>
+                    <span class="star" data-rating="5" onclick="setRating(5)" onmouseenter="showRatingText(5)" onmouseleave="hideRatingText()">★</span>
+                  </div>
+                  <div id="ratingText" class="rating-text" style="text-align: center; font-size: 0.8rem; opacity: 0.7; min-height: 20px; margin-top: 0.25rem;"></div>
+                </div>
+                
+                <div class="question" style="margin-bottom: 1.5rem; margin-top: 0;">
+                  <label for="feedback">What's one thing we can do better next time?</label>
+                  <textarea id="feedback" name="feedback" rows="3" maxlength="1000" placeholder="Your ideas..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit feedback 🎁</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="survey-section">
+          <div class="survey-container">
+            <button class="profile-button survey-button" onclick="toggleDrawer('downloadsDrawer')">
+              <span class="emoji">📄</span>
+              <span>Downloads</span>
+            </button>
+            
+            <div id="downloadsDrawer" class="survey-drawer">
+              <div class="survey-form" style="padding: 1.5rem;">
+                <div style="display: flex; gap: 0.75rem;">
+                  <a 
+                    href="https://micahberman.com/careerlab/cl_quickref.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="profile-button"
+                    style="flex: 1; padding: 1rem; font-size: 0.95rem;"
+                  >
+                    <span class="emoji">📄</span>
+                    <span>Quick reference</span>
+                    <span style="margin-left: auto; opacity: 0.7; font-size: 0.9rem;">↗</span>
+                  </a>
+                  
+                  <a 
+                    href="https://micahberman.com/careerlab/cl_deck.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="profile-button"
+                    style="flex: 1; padding: 1rem; font-size: 0.95rem;"
+                  >
+                    <span class="emoji">📊</span>
+                    <span>Deck</span>
+                    <span style="margin-left: auto; opacity: 0.7; font-size: 0.9rem;">↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="survey-section">
+          <div class="survey-container">
+            <button class="profile-button survey-button" onclick="toggleDrawer('readingDrawer')">
+              <span class="emoji">📚</span>
+              <span>Recommended reading</span>
+            </button>
+            
+            <div id="readingDrawer" class="survey-drawer">
+              <div class="survey-form" style="padding: 1.5rem;">
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                  <li style="margin-bottom: 1rem;">
+                    <a 
+                      href="https://www.amazon.com/Cracking-PM-Interview-Product-Technology/dp/0984782818"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="reading-link"
+                      style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: space-between;"
+                    >
+                      <span>Cracking the PM Interview</span>
+                      <span style="opacity: 0.7; font-size: 0.9rem;">↗</span>
+                    </a>
+                  </li>
+                  <li style="margin-bottom: 1rem;">
+                    <a 
+                      href="https://www.amazon.com/Product-Manager-Interview-Questions-Answers/dp/0998120480/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="reading-link"
+                      style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: space-between;"
+                    >
+                      <span>Product Manager Interview Questions</span>
+                      <span style="opacity: 0.7; font-size: 0.9rem;">↗</span>
+                    </a>
+                  </li>
+                  <li style="margin-bottom: 1rem;">
+                    <a 
+                      href="https://www.amazon.com/Working-Identity-Unconventional-Strategies-Reinventing/dp/1591394139"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="reading-link"
+                      style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: space-between;"
+                    >
+                      <span>Working Identity</span>
+                      <span style="opacity: 0.7; font-size: 0.9rem;">↗</span>
+                    </a>
+                  </li>
+                  <li style="margin-bottom: 1rem;">
+                    <a 
+                      href="https://www.amazon.com/Decode-Conquer-Answers-Management-Interviews/dp/0998120499"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="reading-link"
+                      style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: space-between;"
+                    >
+                      <span>Decode and Conquer</span>
+                      <span style="opacity: 0.7; font-size: 0.9rem;">↗</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="https://www.amazon.com/Mom-Test-customers-business-everyone/dp/1492180742"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="reading-link"
+                      style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: space-between;"
+                    >
+                      <span>The Mom Test</span>
+                      <span style="opacity: 0.7; font-size: 0.9rem;">↗</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <a 
           href="https://www.linkedin.com/in/micahberman/"
           target="_blank"
@@ -136,31 +454,18 @@
         >
           <span class="emoji">🔗</span>
           <span>Connect on LinkedIn</span>
+          <span style="margin-left: auto; opacity: 0.7; font-size: 0.9rem;">↗</span>
         </a>
         
-        <a 
-          href="https://micahberman.com/careerlab/cl_quickref.pdf"
-          class="profile-button"
-        >
-          <span class="emoji">📝</span>
-          <span>Quick Reference</span>
-        </a>
-        
-        <a 
-          href="https://micahberman.com/careerlab/cl_deck.pdf"
-          class="profile-button"
-        >
-          <span class="emoji">🎥</span>
-          <span>Deck</span>
-        </a>
         <a 
           href="mailto:mic@Hberman.org?subject=PM%20Career%20Lab%20Connection"
           target="_blank"
           rel="noopener noreferrer"
           class="profile-button"
         >
-          <span class="emoji">?</span>
-          <span>E-mail Micah questions / feedback</span>
+          <span class="emoji">✉️</span>
+          <span>E-mail a question</span>
+          <span style="margin-left: auto; opacity: 0.7; font-size: 0.9rem;">↗</span>
         </a>
 
 
@@ -171,5 +476,148 @@
         <p>Micah Berman / 2025</p>
       </div>
     </div>
+
+    <script>
+      let selectedRating = 0;
+      const ratingTexts = {
+        1: "Nope",
+        2: "Meh", 
+        3: "Not bad",
+        4: "Good",
+        5: "The best"
+      };
+
+      function showRatingText(rating) {
+        const ratingTextElement = document.getElementById('ratingText');
+        ratingTextElement.textContent = ratingTexts[rating];
+      }
+
+      function hideRatingText() {
+        const ratingTextElement = document.getElementById('ratingText');
+        ratingTextElement.textContent = '';
+      }
+
+      function toggleDrawer(drawerId) {
+        // Close all other drawers first
+        const allDrawers = ['surveyDrawer', 'downloadsDrawer', 'readingDrawer'];
+        allDrawers.forEach(id => {
+          if (id !== drawerId) {
+            const drawer = document.getElementById(id);
+            if (drawer) {
+              drawer.classList.remove('expanded');
+            }
+          }
+        });
+        
+        // Toggle the target drawer
+        const drawer = document.getElementById(drawerId);
+        drawer.classList.toggle('expanded');
+      }
+
+      // Legacy function for existing survey button
+      function toggleSurvey() {
+        toggleDrawer('surveyDrawer');
+      }
+
+      function setRating(rating) {
+        selectedRating = rating;
+        const stars = document.querySelectorAll('.star');
+        
+        stars.forEach((star, index) => {
+          if (index < rating) {
+            star.classList.add('active');
+          } else {
+            star.classList.remove('active');
+          }
+        });
+      }
+
+      async function handleSubmit(event) {
+        event.preventDefault();
+        
+        const submitBtn = event.target.querySelector('.submit-btn');
+        const feedbackText = document.getElementById('feedback').value;
+        
+        // Validate required fields
+        if (selectedRating === 0) {
+          alert('Please select a star rating');
+          return;
+        }
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        
+          try {
+            const payload = {
+              stars: selectedRating.toString(),
+              improvements: feedbackText.trim().slice(0, 1000)
+            };
+
+            // Use no-cors to avoid CORS preflight; Apps Script will read postData.contents
+            await fetch('https://script.google.com/macros/s/AKfycbw6sCr8VfOQ92-CEPzO2yRYVvrw29V4SVbM2KxXIiny25UY-axHdO1LS-XfTOOIbJ1J/exec', {
+              method: 'POST',
+              mode: 'no-cors',
+              keepalive: true,
+              headers: {
+                'Content-Type': 'text/plain;charset=UTF-8'
+              },
+              body: JSON.stringify(payload)
+            });
+            
+            // Treat as success if request didn't throw
+            selectedRating = 0;
+            document.getElementById('feedback').value = '';
+            document.querySelectorAll('.star').forEach(star => {
+              star.classList.remove('active');
+            });
+            
+            // Close drawer and update button appearance
+            toggleSurvey();
+            const surveyButton = document.querySelector('.survey-button');
+            const emoji = surveyButton.querySelector('.emoji');
+            const text = surveyButton.querySelector('span:last-child');
+            
+            emoji.textContent = '✓';
+            text.textContent = 'Thanks for the feedback';
+            surveyButton.style.background = 'linear-gradient(135deg, rgba(128, 128, 128, 0.2), rgba(128, 128, 128, 0.1))';
+            surveyButton.disabled = true;
+            surveyButton.style.cursor = 'not-allowed';
+            surveyButton.onclick = null;
+        } catch (error) {
+          console.error('Error submitting feedback:', error);
+          alert('Failed to submit feedback. Please try again.');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit feedback 🎁';
+        }
+      }
+
+      // Add hover effects for stars
+      document.addEventListener('DOMContentLoaded', function() {
+        const stars = document.querySelectorAll('.star');
+        
+        stars.forEach((star, index) => {
+          star.addEventListener('mouseenter', () => {
+            stars.forEach((s, i) => {
+              if (i <= index) {
+                s.style.color = '#fbbf24';
+              } else {
+                s.style.color = 'rgba(255, 255, 255, 0.3)';
+              }
+            });
+          });
+          
+          star.addEventListener('mouseleave', () => {
+            stars.forEach((s, i) => {
+              if (i < selectedRating) {
+                s.style.color = '#fbbf24';
+              } else {
+                s.style.color = 'rgba(255, 255, 255, 0.3)';
+              }
+            });
+          });
+        });
+      });
+    </script>
   </body>
 </html>
