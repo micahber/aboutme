@@ -148,7 +148,7 @@
       }
 
       .survey-drawer.expanded {
-        max-height: 500px;
+        max-height: 800px;
         opacity: 1;
       }
 
@@ -165,7 +165,8 @@
         border-radius: 50%;
         width: 24px;
         height: 24px;
-        font-size: 16px;
+        font-size: 1rem;
+        font-weight: 600;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -179,18 +180,18 @@
       }
 
       .survey-form {
-        padding: 0 1.5rem 1.5rem;
+        padding: 0 1.25rem 1.25rem;
       }
 
       .question {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
       }
 
       .question label {
         display: block;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
         font-weight: 500;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
 
       .star-rating {
@@ -251,7 +252,7 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;
-        font-size: 0.95rem;
+        font-size: 1.125rem;
       }
 
       .submit-btn:hover {
@@ -268,6 +269,28 @@
       /* Recommended reading link hover effects */
       .reading-link:hover {
         text-decoration: underline !important;
+      }
+
+      /* Recommend buttons */
+      .recommend-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
+        padding: 0.5rem 1.25rem;
+        color: white;
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .recommend-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .recommend-btn.active {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
       }
 
       @media (max-width: 640px) {
@@ -307,17 +330,38 @@
             </button>
             
             <div id="surveyDrawer" class="survey-drawer">
-              <form class="survey-form" onsubmit="handleSubmit(event)" style="padding: 1.5rem;">
+            <form class="survey-form" onsubmit="handleSubmit(event)" style="padding: 1.5rem;">
                 <div class="question">
-                  <label>Was this class a good use of your time?</label>
-                  <div class="star-rating">
-                    <span class="star" data-rating="1" onclick="setRating(1)" onmouseenter="showRatingText(1)" onmouseleave="hideRatingText()">★</span>
-                    <span class="star" data-rating="2" onclick="setRating(2)" onmouseenter="showRatingText(2)" onmouseleave="hideRatingText()">★</span>
-                    <span class="star" data-rating="3" onclick="setRating(3)" onmouseenter="showRatingText(3)" onmouseleave="hideRatingText()">★</span>
-                    <span class="star" data-rating="4" onclick="setRating(4)" onmouseenter="showRatingText(4)" onmouseleave="hideRatingText()">★</span>
-                    <span class="star" data-rating="5" onclick="setRating(5)" onmouseenter="showRatingText(5)" onmouseleave="hideRatingText()">★</span>
+                  <label>Rate this class</label>
+                  <div class="star-rating" id="classRatingStars">
+                    <span class="star class-star" data-rating="1" onclick="setClassRating(1)" onmouseenter="showClassRatingText(1)" onmouseleave="hideClassRatingText()">★</span>
+                    <span class="star class-star" data-rating="2" onclick="setClassRating(2)" onmouseenter="showClassRatingText(2)" onmouseleave="hideClassRatingText()">★</span>
+                    <span class="star class-star" data-rating="3" onclick="setClassRating(3)" onmouseenter="showClassRatingText(3)" onmouseleave="hideClassRatingText()">★</span>
+                    <span class="star class-star" data-rating="4" onclick="setClassRating(4)" onmouseenter="showClassRatingText(4)" onmouseleave="hideClassRatingText()">★</span>
+                    <span class="star class-star" data-rating="5" onclick="setClassRating(5)" onmouseenter="showClassRatingText(5)" onmouseleave="hideClassRatingText()">★</span>
                   </div>
-                  <div id="ratingText" class="rating-text" style="text-align: center; font-size: 0.8rem; opacity: 0.7; min-height: 20px; margin-top: 0.25rem;"></div>
+                  <div id="classRatingText" class="rating-text" style="text-align: center; font-size: 0.8rem; opacity: 0.7; min-height: 20px; margin-top: 0.25rem;"></div>
+                </div>
+                
+                <div class="question">
+                  <label>Would you recommend this class to a friend?</label>
+                  <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                    <button type="button" class="recommend-btn" data-value="yes" onclick="setRecommend('yes')">Yes</button>
+                    <button type="button" class="recommend-btn" data-value="maybe" onclick="setRecommend('maybe')">Maybe</button>
+                    <button type="button" class="recommend-btn" data-value="no" onclick="setRecommend('no')">No</button>
+                  </div>
+                </div>
+                
+                <div class="question">
+                  <label>Do you feel your understanding of the topic was improved?</label>
+                  <div class="star-rating" id="understandingRatingStars">
+                    <span class="star understanding-star" data-rating="1" onclick="setUnderstandingRating(1)" onmouseenter="showUnderstandingRatingText(1)" onmouseleave="hideUnderstandingRatingText()">★</span>
+                    <span class="star understanding-star" data-rating="2" onclick="setUnderstandingRating(2)" onmouseenter="showUnderstandingRatingText(2)" onmouseleave="hideUnderstandingRatingText()">★</span>
+                    <span class="star understanding-star" data-rating="3" onclick="setUnderstandingRating(3)" onmouseenter="showUnderstandingRatingText(3)" onmouseleave="hideUnderstandingRatingText()">★</span>
+                    <span class="star understanding-star" data-rating="4" onclick="setUnderstandingRating(4)" onmouseenter="showUnderstandingRatingText(4)" onmouseleave="hideUnderstandingRatingText()">★</span>
+                    <span class="star understanding-star" data-rating="5" onclick="setUnderstandingRating(5)" onmouseenter="showUnderstandingRatingText(5)" onmouseleave="hideUnderstandingRatingText()">★</span>
+                  </div>
+                  <div id="understandingRatingText" class="rating-text" style="text-align: center; font-size: 0.8rem; opacity: 0.7; min-height: 20px; margin-top: 0.25rem;"></div>
                 </div>
                 
                 <div class="question" style="margin-bottom: 1.5rem; margin-top: 0;">
@@ -346,7 +390,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="profile-button"
-                    style="flex: 1; padding: 1rem; font-size: 0.95rem;"
+                    style="flex: 1; padding: 1rem;"
                   >
                     <span class="emoji">📄</span>
                     <span>Quick reference</span>
@@ -358,7 +402,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="profile-button"
-                    style="flex: 1; padding: 1rem; font-size: 0.95rem;"
+                    style="flex: 1; padding: 1rem;"
                   >
                     <span class="emoji">📊</span>
                     <span>Deck</span>
@@ -478,23 +522,75 @@
     </div>
 
     <script>
-      let selectedRating = 0;
-      const ratingTexts = {
-        1: "Nope",
-        2: "Meh", 
-        3: "Not bad",
-        4: "Good",
-        5: "The best"
+      let selectedClassRating = 0;
+      let selectedRecommend = '';
+      let selectedUnderstandingRating = 0;
+
+      const classRatingTexts = {
+        1: "Poor",
+        2: "Fair", 
+        3: "Good",
+        4: "Very good",
+        5: "Excellent"
       };
 
-      function showRatingText(rating) {
-        const ratingTextElement = document.getElementById('ratingText');
-        ratingTextElement.textContent = ratingTexts[rating];
+      const understandingRatingTexts = {
+        1: "No improvement",
+        2: "Slight improvement", 
+        3: "Moderate improvement",
+        4: "Significant improvement",
+        5: "Transformative"
+      };
+
+      function showClassRatingText(rating) {
+        document.getElementById('classRatingText').textContent = classRatingTexts[rating];
       }
 
-      function hideRatingText() {
-        const ratingTextElement = document.getElementById('ratingText');
-        ratingTextElement.textContent = '';
+      function hideClassRatingText() {
+        document.getElementById('classRatingText').textContent = '';
+      }
+
+      function showUnderstandingRatingText(rating) {
+        document.getElementById('understandingRatingText').textContent = understandingRatingTexts[rating];
+      }
+
+      function hideUnderstandingRatingText() {
+        document.getElementById('understandingRatingText').textContent = '';
+      }
+
+      function setClassRating(rating) {
+        selectedClassRating = rating;
+        const stars = document.querySelectorAll('.class-star');
+        stars.forEach((star, index) => {
+          if (index < rating) {
+            star.classList.add('active');
+          } else {
+            star.classList.remove('active');
+          }
+        });
+      }
+
+      function setUnderstandingRating(rating) {
+        selectedUnderstandingRating = rating;
+        const stars = document.querySelectorAll('.understanding-star');
+        stars.forEach((star, index) => {
+          if (index < rating) {
+            star.classList.add('active');
+          } else {
+            star.classList.remove('active');
+          }
+        });
+      }
+
+      function setRecommend(value) {
+        selectedRecommend = value;
+        document.querySelectorAll('.recommend-btn').forEach(btn => {
+          if (btn.dataset.value === value) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
       }
 
       function toggleDrawer(drawerId) {
@@ -519,19 +615,6 @@
         toggleDrawer('surveyDrawer');
       }
 
-      function setRating(rating) {
-        selectedRating = rating;
-        const stars = document.querySelectorAll('.star');
-        
-        stars.forEach((star, index) => {
-          if (index < rating) {
-            star.classList.add('active');
-          } else {
-            star.classList.remove('active');
-          }
-        });
-      }
-
       async function handleSubmit(event) {
         event.preventDefault();
         
@@ -539,50 +622,65 @@
         const feedbackText = document.getElementById('feedback').value;
         
         // Validate required fields
-        if (selectedRating === 0) {
-          alert('Please select a star rating');
+        if (selectedClassRating === 0) {
+          alert('Please rate this class');
+          return;
+        }
+        if (!selectedRecommend) {
+          alert('Please select whether you would recommend this class');
+          return;
+        }
+        if (selectedUnderstandingRating === 0) {
+          alert('Please rate how much your understanding improved');
           return;
         }
         
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
         
-          try {
-            const payload = {
-              stars: selectedRating.toString(),
-              improvements: feedbackText.trim().slice(0, 1000)
-            };
+        try {
+          const payload = {
+            classRating: selectedClassRating.toString(),
+            recommend: selectedRecommend,
+            understandingRating: selectedUnderstandingRating.toString(),
+            improvements: feedbackText.trim().slice(0, 1000)
+          };
 
-            // Use no-cors to avoid CORS preflight; Apps Script will read postData.contents
-            await fetch('https://script.google.com/macros/s/AKfycbw6sCr8VfOQ92-CEPzO2yRYVvrw29V4SVbM2KxXIiny25UY-axHdO1LS-XfTOOIbJ1J/exec', {
-              method: 'POST',
-              mode: 'no-cors',
-              keepalive: true,
-              headers: {
-                'Content-Type': 'text/plain;charset=UTF-8'
-              },
-              body: JSON.stringify(payload)
-            });
-            
-            // Treat as success if request didn't throw
-            selectedRating = 0;
-            document.getElementById('feedback').value = '';
-            document.querySelectorAll('.star').forEach(star => {
-              star.classList.remove('active');
-            });
-            
-            // Close drawer and update button appearance
-            toggleSurvey();
-            const surveyButton = document.querySelector('.survey-button');
-            const emoji = surveyButton.querySelector('.emoji');
-            const text = surveyButton.querySelector('span:last-child');
-            
-            emoji.textContent = '✓';
-            text.textContent = 'Thanks for the feedback';
-            surveyButton.style.background = 'linear-gradient(135deg, rgba(128, 128, 128, 0.2), rgba(128, 128, 128, 0.1))';
-            surveyButton.disabled = true;
-            surveyButton.style.cursor = 'not-allowed';
-            surveyButton.onclick = null;
+          // Use no-cors to avoid CORS preflight; Apps Script will read postData.contents
+          await fetch('https://script.google.com/macros/s/AKfycbw6sCr8VfOQ92-CEPzO2yRYVvrw29V4SVbM2KxXIiny25UY-axHdO1LS-XfTOOIbJ1J/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            keepalive: true,
+            headers: {
+              'Content-Type': 'text/plain;charset=UTF-8'
+            },
+            body: JSON.stringify(payload)
+          });
+          
+          // Treat as success if request didn't throw
+          selectedClassRating = 0;
+          selectedRecommend = '';
+          selectedUnderstandingRating = 0;
+          document.getElementById('feedback').value = '';
+          document.querySelectorAll('.star').forEach(star => {
+            star.classList.remove('active');
+          });
+          document.querySelectorAll('.recommend-btn').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          
+          // Close drawer and update button appearance
+          toggleSurvey();
+          const surveyButton = document.querySelector('.survey-button');
+          const emoji = surveyButton.querySelector('.emoji');
+          const text = surveyButton.querySelector('span:last-child');
+          
+          emoji.textContent = '✓';
+          text.textContent = 'Thanks for the feedback';
+          surveyButton.style.background = 'linear-gradient(135deg, rgba(128, 128, 128, 0.2), rgba(128, 128, 128, 0.1))';
+          surveyButton.disabled = true;
+          surveyButton.style.cursor = 'not-allowed';
+          surveyButton.onclick = null;
         } catch (error) {
           console.error('Error submitting feedback:', error);
           alert('Failed to submit feedback. Please try again.');
@@ -592,10 +690,9 @@
         }
       }
 
-      // Add hover effects for stars
-      document.addEventListener('DOMContentLoaded', function() {
-        const stars = document.querySelectorAll('.star');
-        
+      // Add hover effects for class rating stars
+      function setupStarHover(starSelector, getSelectedRating) {
+        const stars = document.querySelectorAll(starSelector);
         stars.forEach((star, index) => {
           star.addEventListener('mouseenter', () => {
             stars.forEach((s, i) => {
@@ -608,8 +705,9 @@
           });
           
           star.addEventListener('mouseleave', () => {
+            const selected = getSelectedRating();
             stars.forEach((s, i) => {
-              if (i < selectedRating) {
+              if (i < selected) {
                 s.style.color = '#fbbf24';
               } else {
                 s.style.color = 'rgba(255, 255, 255, 0.3)';
@@ -617,6 +715,20 @@
             });
           });
         });
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        setupStarHover('.class-star', () => selectedClassRating);
+        setupStarHover('.understanding-star', () => selectedUnderstandingRating);
+
+        // Auto-expand feedback panel if ?feedback=true is in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('feedback') === 'true') {
+          const drawer = document.getElementById('surveyDrawer');
+          if (drawer) {
+            drawer.classList.add('expanded');
+          }
+        }
       });
     </script>
   </body>
