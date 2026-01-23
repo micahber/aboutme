@@ -331,6 +331,7 @@
             
             <div id="surveyDrawer" class="survey-drawer">
             <form class="survey-form" onsubmit="handleSubmit(event)" style="padding: 1.5rem;">
+                <p style="text-align: center; font-size: 0.85rem; opacity: 0.8; margin-bottom: 1rem; font-style: italic;">All questions are optional</p>
                 <div class="question">
                   <label>Rate this class</label>
                   <div class="star-rating" id="classRatingStars">
@@ -346,9 +347,9 @@
                 <div class="question">
                   <label>Would you recommend this class to a friend?</label>
                   <div style="display: flex; gap: 0.5rem; justify-content: center;">
-                    <button type="button" class="recommend-btn" data-value="yes" onclick="setRecommend('yes')">Yes</button>
-                    <button type="button" class="recommend-btn" data-value="maybe" onclick="setRecommend('maybe')">Maybe</button>
                     <button type="button" class="recommend-btn" data-value="no" onclick="setRecommend('no')">No</button>
+                    <button type="button" class="recommend-btn" data-value="maybe" onclick="setRecommend('maybe')">Maybe</button>
+                    <button type="button" class="recommend-btn" data-value="yes" onclick="setRecommend('yes')">Yes</button>
                   </div>
                 </div>
                 
@@ -517,7 +518,7 @@
       
       
       <div class="footer">
-        <p>Micah Berman / 2025</p>
+        <p>Micah Berman / 2026</p>
       </div>
     </div>
 
@@ -535,11 +536,11 @@
       };
 
       const understandingRatingTexts = {
-        1: "No improvement",
-        2: "Slight improvement", 
-        3: "Moderate improvement",
-        4: "Significant improvement",
-        5: "Transformative"
+        1: "No",
+        2: "A bit", 
+        3: "Somewhat",
+        4: "Significantly",
+        5: "Very significantly"
       };
 
       function showClassRatingText(rating) {
@@ -621,19 +622,7 @@
         const submitBtn = event.target.querySelector('.submit-btn');
         const feedbackText = document.getElementById('feedback').value;
         
-        // Validate required fields
-        if (selectedClassRating === 0) {
-          alert('Please rate this class');
-          return;
-        }
-        if (!selectedRecommend) {
-          alert('Please select whether you would recommend this class');
-          return;
-        }
-        if (selectedUnderstandingRating === 0) {
-          alert('Please rate how much your understanding improved');
-          return;
-        }
+        // All fields are optional - no validation needed
         
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
@@ -724,10 +713,13 @@
         // Auto-expand feedback panel if ?feedback=true is in URL
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('feedback') === 'true') {
-          const drawer = document.getElementById('surveyDrawer');
-          if (drawer) {
-            drawer.classList.add('expanded');
-          }
+          // Use setTimeout to ensure DOM is fully ready
+          setTimeout(function() {
+            const drawer = document.getElementById('surveyDrawer');
+            if (drawer) {
+              drawer.classList.add('expanded');
+            }
+          }, 100);
         }
       });
     </script>
