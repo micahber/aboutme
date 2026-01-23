@@ -94,6 +94,8 @@
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         border: 1px solid rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(10px);
+        position: relative;
+        z-index: 10;
       }
 
       .profile-button:hover {
@@ -184,7 +186,7 @@
       }
 
       .question {
-        margin-bottom: 1rem;
+        margin-bottom: 1.25rem;
       }
 
       .question label {
@@ -365,7 +367,7 @@
                   <div id="understandingRatingText" class="rating-text" style="text-align: center; font-size: 0.8rem; opacity: 0.7; min-height: 20px; margin-top: 0.25rem;"></div>
                 </div>
                 
-                <div class="question" style="margin-bottom: 1.5rem; margin-top: 0;">
+                <div class="question" style="margin-bottom: 1.25rem;">
                   <label for="feedback">What's one thing we can do better next time?</label>
                   <textarea id="feedback" name="feedback" rows="3" maxlength="1000" placeholder="Your ideas..."></textarea>
                 </div>
