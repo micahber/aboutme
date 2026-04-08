@@ -232,6 +232,7 @@ h2 {
 
 .pub-title        { font-size: 0.9rem; font-weight: 500; }
 .pub-title a      { color: var(--text); }
+.pub-title a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 2px; }
 .pub-outlet       { font-size: 0.78rem; color: var(--text-muted); }
 
 /* ─────────────────────────────────────────
