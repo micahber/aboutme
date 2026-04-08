@@ -281,6 +281,9 @@ h2 {
   line-height: 1.3;
 }
 
+.project-name a         { color: var(--text); }
+.project-name a:hover   { opacity: 1; text-decoration: underline; text-underline-offset: 2px; }
+
 .project-item p  { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
 .project-link    { font-size: 0.8rem; margin-left: 0.3rem; }
 
