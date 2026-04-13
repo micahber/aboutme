@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hard Decisions as Information Deficits — Micah Berman</title>
+    <meta name="description" content="" />
+    <meta name="author" content="Micah Berman" />
+
+    <meta property="og:title" content="Hard Decisions as Information Deficits — Micah Berman" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="article" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg:         #ffffff;
+        --bg-card:    #f7f5f2;
+        --text:       #1c1814;
+        --text-muted: #7c766e;
+        --accent:     #4a7459;
+        --border:     #d6cfc5;
+        --display:    'Fraunces', Georgia, serif;
+        --sans:       'DM Sans', system-ui, -apple-system, sans-serif;
+        --content-max: 660px;
+        --pad-x: clamp(1.5rem, 5vw, 3rem);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-weight: 400;
+        line-height: 1.75;
+        padding: 3rem var(--pad-x) 6rem;
+      }
+
+      a {
+        color: var(--text);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: var(--border);
+        transition: text-decoration-color 0.15s;
+      }
+      a:hover { text-decoration-color: var(--text); }
+
+      .back-link {
+        display: inline-block;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        text-decoration: none;
+        margin-bottom: 3rem;
+      }
+      .back-link:hover { color: var(--text); }
+      .back-link::before { content: "← "; }
+
+      article {
+        max-width: var(--content-max);
+        margin: 0 auto;
+      }
+
+      .article-header {
+        margin-bottom: 2.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      h1 {
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: clamp(1.6rem, 3vw, 2rem);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: var(--text);
+      }
+
+      .article-meta {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+      }
+
+      .article-body {
+        font-size: 1.05rem;
+        line-height: 1.85;
+      }
+
+      .article-body p { margin-bottom: 1.5rem; }
+      .article-body p:last-child { margin-bottom: 0; }
+
+      .article-body h2 {
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin: 2.5rem 0 0.75rem;
+        color: var(--text);
+      }
+
+      .article-body blockquote {
+        border-left: 3px solid var(--border);
+        padding-left: 1.25rem;
+        color: var(--text-muted);
+        font-style: italic;
+        margin: 1.5rem 0;
+      }
+
+      .article-body ul, .article-body ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.5rem;
+        list-style: disc;
+      }
+      .article-body ol { list-style: decimal; }
+      .article-body li { margin-bottom: 0.4rem; }
+
+      .article-body img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 2rem 0;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+      }
+
+      @media (max-width: 600px) {
+        body { padding: 2rem 1.25rem 4rem; }
+        .back-link { margin-bottom: 2rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="back-link" href="../index.html#writing">Writing</a>
+
+    <article>
+      <header class="article-header">
+        <h1>Hard Decisions as Information Deficits</h1>
+        <div class="article-meta">2017</div>
+      </header>
+
+      <div class="article-body">
+        <p>I wrote this in 2017, and still use it unchanged today, in 2026. Part of what's critical in its framing is that decisions have a cost — where we can reasonably guess, our efforts may be better focused on managing outcomes instead of the decision itself.</p>
+        <img src="../assets/projects/Decisions.png" alt="A framework for hard decisions" />
+      </div>
+    </article>
+  </body>
+</html>
