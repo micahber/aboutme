@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flipping Fluency — Micah Berman</title>
-    <meta name="description" content="" />
+    <meta name="description" content="What happens when computers become fluent in human, rather than humans becoming fluent in computer?" />
     <meta name="author" content="Micah Berman" />
 
     <meta property="og:title" content="Flipping Fluency — Micah Berman" />
-    <meta property="og:description" content="" />
+    <meta property="og:description" content="What happens when computers become fluent in human, rather than humans becoming fluent in computer?" />
     <meta property="og:type" content="article" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -119,6 +119,19 @@
       .article-body ol { list-style: decimal; }
       .article-body li { margin-bottom: 0.4rem; }
 
+      .article-note {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        font-style: italic;
+      }
+
+      .article-lede {
+        font-size: 1.15rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
       @media (max-width: 600px) {
         body { padding: 2rem 1.25rem 4rem; }
         .back-link { margin-bottom: 2rem; }
@@ -131,11 +144,48 @@
     <article>
       <header class="article-header">
         <h1>Flipping Fluency</h1>
-        <div class="article-meta"><!-- Month Year --></div>
+        <div class="article-meta">2026</div>
       </header>
 
       <div class="article-body">
-        <!-- Article content goes here -->
+        <p class="article-note"><em>Note: these are simply personal views. I'm not sure they're right, and they are certainly not complete. They represent one exploration of my current thinking on what I believe are some of the more important questions of our time.</em></p>
+
+        <p class="article-lede">In short: what happens when computers become fluent in human, rather than humans becoming fluent in computer?</p>
+
+        <p><strong>For decades, we've taught people how to use computers</strong> — how to feed them data (typing classes), how to manipulate them (computer literacy courses in high school), and how to build with them (everything from Javascript bootcamps to CS majors). Software skills became hiring criteria ("proficient in Word!") and some specialized software-use became entire job categories ("Microsoft Exchange administrator"). Through it all, we learned to make our processes match that of a computer.</p>
+
+        <p><strong>And then those skilled people set out to use and build software in the way they'd been trained to think</strong>: a fixed set of inputs, transformed in predictable ways, delivered as a particular output. Sometimes configurable, but always regimented in this way. For example: enter tax data, get a filed return; specify which tones play when, receive MIDI music file. Mass-market software was engineered for the broadest possible audience, which made it general and, inevitably, generic.</p>
+
+        <p><strong>But, this software wasn't always easy to use, so we created a "user experience" discipline,</strong> to study and implement ways to pull these two kinds of thinking – human and computational – together into one. <strong>And then, over time, the bar to <em>use</em> a computer started to drop:</strong> the command line became a GUI, Windows 95 became iOS. It became easier and easier to get started with the software that existed. Early Google Search is a great example of this era's ceiling: humans learn to issue a query in a very structured way, and software returns a series of results in a way that is highly generalized, yet still quite useful.</p>
+
+        <p><strong>Turn the page, and today the bar to <em>create</em> software is dropping just as precipitously.</strong> This change implies <strong>a fundamental <em>shift</em></strong> in the equation: rather than a team of specialists building for many users, an individual user can build for themself. And that can make the resulting software <em>more</em> useful to that particular person or group of people: instead of hiring a Salesforce administrator to make Salesforce do 80% of what they want, a small nonprofit in the midwest can now just build a tool that does perhaps 110% of what they'd imagined was possible, integrated with their existing tools. The old economics of software development necessitated generalization-with-configuration, shirt size 34 and ½ with a 15 neck – but the new ones allow for custom-tailored suits all around. Soon, without specialized training, you can create a completely bespoke and well-implemented deterministic software package to complete day-to-day tasks.</p>
+
+        <p><strong>This transitionary stage is going to be awkward.</strong> This software blossoming exacerbates lots of follow-on questions (how do we secure and maintain this rapid and largely duplicative blossoming of tools? Where does the build-vs-buy equilibrium net out?), but the end result is nonetheless that we'll write a bunch of software without foresight. It's poorly-conceived only insofar as it misestimates the human and software interaction: knowing what task you want to complete is, on the surface, different than the skill to create software to do it. Over time this will improve as models bridge more of that gap and write better code, so the one-shot, amateur-built solutions work better and better. But eventually, as this trend continues, the software will start to fade entirely: the real threat to SaaS is not vibecoded apps, it's the lack of software as we know it altogether.</p>
+
+        <p><strong>What comes next is the fundamental <em>reversal</em> of the original and underlying dynamic.</strong> Rather than starting with software and backing it into human needs, what if we started with human needs and software effortlessly rose to meet them? It approaches the same problem from a fundamentally different angle and allows us to ask questions we haven't been able to ask since the industrial revolution.</p>
+
+        <p><strong>In the new era, <em>tasks</em> get completed in a fundamentally nondeterministic, whatever-in/whatever-out way</strong> – just like the best human collaborator of today, but faster, more competent, and ever-available. The ends are fungible (maybe a thought or a dashed-off text or a voice note or an incoming datum from your physician goes in or out), but so are the means (what's actually done to complete the task). It is easy and common to conceive of the top-line of this experience: ask for a vacation to the Bahamas, and voilà, there it is. But what happens behind the scenes to make this happen, and how is it architected?</p>
+
+        <p><strong>The "<a href="https://www.darioamodei.com/essay/machines-of-loving-grace">country of geniuses in a datacenter</a>" raises a raft of exciting and fundamental questions about how humans might ideally relate to machines.</strong> So many of the ways that we interact today – for example, typing into a document using a keyboard – are a product of the evolving capability limitations of the technology that enabled distribution. The printing press to the typewriter to the computer. As that technology becomes sufficiently capable that it can meet us where we're at rather than the other way around, what ought we do?</p>
+
+        <ul>
+          <li><strong>Interface: what are the most effective, efficient and satisfying ways for humans to both "send" and "receive" information?</strong> I imagine voice, short dashes of written words, and quick drawings may take precedence over the keyboards and long-form prose of today. More "ambient" context makes some of the interaction entirely unnecessary. Of course, these new models raise fundamental security and privacy questions on which we'll need to focus as we move forward.</li>
+        </ul>
+
+        <p><strong>And similarly, for machine-to-machine communication</strong> — today, we regress to existing systems – e-mail intermediates AI systems that read and write long-form prose in emails, effectively sticking a fax machine between two supercomputers. MCP is a good initial scaffold to interoperability between agentic and legacy systems, but standardized protocols unto themselves may become both moot and inefficient when each system can negotiate the relevant data for the task at hand with its counterpart, perhaps in a much more efficient manner.</p>
+
+        <ul>
+          <li><strong>Structure: what is the role for standardization and structure in a world where bespoke is the default and machines are nearly infinitely capable? Where are the optimal organizational boundaries in a world of increasing general capability?</strong> How do we draw lines between services and software when anything can do, well, anything? How will the economics of service provision be divided?</li>
+          <li>See also, <strong>Quality and Craft in the AI Era</strong> (forthcoming).</li>
+        </ul>
+
+        <p><strong>And finally what does this all mean for human-ness, for our lives and livelihoods?</strong> As machines approach human-ness, we need to re-ask questions about what it means to be human…</p>
+
+        <ul>
+          <li><strong>Meaning: what is the meaning of life in a world where machines are infinitely capable?</strong> For all of recorded history, the scarcity of human capability has driven how we organize our lives. It determined how we divided labor, what we valued in each other, how we built society and its hierarchies of expertise and authority, and, perhaps most deeply, what we told ourselves our lives were for. The Protestant work ethic, the dignity of craft, the romance of expertise: these aren't timeless truths about human nature, they're adaptations to a world where human capability was the only capability there was. What happens to meaning, hierarchy, and identity when that scarcity dissolves? The industrial revolution mechanized physical labor and we adapted — but we adapted by retreating to the primacy of the cognitive. To where will we go now?</li>
+        </ul>
+
+        <p class="article-note"><em>Note:</em> each of the bullet points represents a future exploration I hope to undertake — I'll link them here when I do.</p>
       </div>
     </article>
   </body>
