@@ -54,7 +54,7 @@
 
     <div class="about-bio">
       <p>
-        I grow people-first teams that turn frontier technology into award-winning products that make our world better. The less obvious the answer, the more interesting the question.
+        I grow people-first teams that turn frontier technology into products that make our world better. The less obvious the answer, the more interesting the question.
       </p>
       <p>
         Today, I'm building the modern benefit for frontline workers at <a href="https://tryezra.com/" target="_blank">Ezra</a>. 
@@ -376,23 +376,15 @@
   const panelOrder = Array.from(panels).map(p => p.id);
   const navBrand   = document.querySelector('.nav-brand');
   let currentIndex = 0;
-  let scrollCooldown    = false;
-  let cooldownTimer     = null;
-  let lastAbsorbedDelta = 0;
+  let scrollCooldown = false;
+  let cooldownTimer  = null;
+  let lastWheelTime  = 0;
+  const GESTURE_GAP  = 150; // ms gap that signals a new deliberate gesture
 
-  function startCooldown(triggerDelta) {
-    scrollCooldown    = true;
-    lastAbsorbedDelta = triggerDelta;
+  function startCooldown() {
+    scrollCooldown = true;
     clearTimeout(cooldownTimer);
-    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 600);
-  }
-
-  function tryAbsorb(absDelta) {
-    // Accelerating delta = new gesture; release immediately
-    if (absDelta > lastAbsorbedDelta) { scrollCooldown = false; return; }
-    lastAbsorbedDelta = absDelta;
-    clearTimeout(cooldownTimer);
-    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 600);
+    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 800);
   }
 
   // ── Page-flip indicator ───────────────────────────────────────
@@ -516,7 +508,24 @@
   }
 
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) { e.preventDefault(); tryAbsorb(Math.abs(e.deltaY)); return; }
+    const now = Date.now();
+    const gap  = now - lastWheelTime;
+    lastWheelTime = now;
+
+    if (scrollCooldown) {
+      e.preventDefault();
+      if (gap > GESTURE_GAP) {
+        // New gesture after a pause — release and fall through to process normally
+        scrollCooldown = false;
+        clearTimeout(cooldownTimer);
+        resetBoundary();
+      } else {
+        // Same gesture momentum — keep absorbing, refresh fallback timer
+        clearTimeout(cooldownTimer);
+        cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 800);
+        return;
+      }
+    }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom    = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
@@ -540,7 +549,7 @@
     if (boundaryAccum < FLIP_THRESHOLD) return;
 
     resetBoundary();
-    startCooldown(Math.abs(delta));
+    startCooldown();
     history.pushState(null, '', `#${panelOrder[next]}`);
     showPanel(panelOrder[next], dir < 0);
   });
