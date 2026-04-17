@@ -377,15 +377,7 @@
   const navBrand   = document.querySelector('.nav-brand');
   let currentIndex = 0;
   let scrollCooldown = false;
-  let cooldownTimer  = null;
-  let lastWheelTime  = 0;
-  const GESTURE_GAP  = 150; // ms gap that signals a new deliberate gesture
-
-  function startCooldown() {
-    scrollCooldown = true;
-    clearTimeout(cooldownTimer);
-    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 800);
-  }
+  let absorbBudget   = 0;
 
   // ── Page-flip indicator ───────────────────────────────────────
   const pfiEl   = document.getElementById('page-flip-indicator');
@@ -508,23 +500,11 @@
   }
 
   window.addEventListener('wheel', (e) => {
-    const now = Date.now();
-    const gap  = now - lastWheelTime;
-    lastWheelTime = now;
-
     if (scrollCooldown) {
       e.preventDefault();
-      if (gap > GESTURE_GAP) {
-        // New gesture after a pause — release and fall through to process normally
-        scrollCooldown = false;
-        clearTimeout(cooldownTimer);
-        resetBoundary();
-      } else {
-        // Same gesture momentum — keep absorbing, refresh fallback timer
-        clearTimeout(cooldownTimer);
-        cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 800);
-        return;
-      }
+      absorbBudget -= Math.abs(e.deltaY);
+      if (absorbBudget <= 0) { scrollCooldown = false; }
+      return;
     }
     const dir = e.deltaY > 0 ? 1 : -1;
 
@@ -549,7 +529,8 @@
     if (boundaryAccum < FLIP_THRESHOLD) return;
 
     resetBoundary();
-    startCooldown();
+    scrollCooldown = true;
+    absorbBudget   = FLIP_THRESHOLD;
     history.pushState(null, '', `#${panelOrder[next]}`);
     showPanel(panelOrder[next], dir < 0);
   });
