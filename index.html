@@ -376,23 +376,23 @@
   const panelOrder = Array.from(panels).map(p => p.id);
   const navBrand   = document.querySelector('.nav-brand');
   let currentIndex = 0;
-  let scrollCooldown = false;
-  let cooldownTimer = null;
-  let cooldownStart = 0;
-  const COOLDOWN_BASE = 700;
-  const COOLDOWN_MAX  = 2000;
+  let scrollCooldown    = false;
+  let cooldownTimer     = null;
+  let lastAbsorbedDelta = 0;
 
-  function startCooldown() {
-    scrollCooldown = true;
-    cooldownStart  = Date.now();
+  function startCooldown(triggerDelta) {
+    scrollCooldown    = true;
+    lastAbsorbedDelta = triggerDelta;
     clearTimeout(cooldownTimer);
-    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, COOLDOWN_BASE);
+    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 600);
   }
 
-  function extendCooldown() {
-    if (Date.now() - cooldownStart >= COOLDOWN_MAX) { scrollCooldown = false; return; }
+  function tryAbsorb(absDelta) {
+    // Accelerating delta = new gesture; release immediately
+    if (absDelta > lastAbsorbedDelta) { scrollCooldown = false; return; }
+    lastAbsorbedDelta = absDelta;
     clearTimeout(cooldownTimer);
-    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, COOLDOWN_BASE);
+    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, 600);
   }
 
   // ── Page-flip indicator ───────────────────────────────────────
@@ -516,7 +516,7 @@
   }
 
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) { e.preventDefault(); extendCooldown(); return; }
+    if (scrollCooldown) { e.preventDefault(); tryAbsorb(Math.abs(e.deltaY)); return; }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom    = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
@@ -540,7 +540,7 @@
     if (boundaryAccum < FLIP_THRESHOLD) return;
 
     resetBoundary();
-    startCooldown();
+    startCooldown(Math.abs(delta));
     history.pushState(null, '', `#${panelOrder[next]}`);
     showPanel(panelOrder[next], dir < 0);
   });
