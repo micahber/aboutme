@@ -245,6 +245,7 @@ h2 {
 .pub-title        { font-size: 1rem; font-weight: 500; }
 .pub-title a      { color: var(--text); }
 .pub-outlet       { font-size: 0.78rem; color: var(--text-muted); }
+.pub-blurb        { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
 
 /* ─────────────────────────────────────────
    CERTIFICATIONS
