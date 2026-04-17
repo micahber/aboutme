@@ -377,6 +377,23 @@
   const navBrand   = document.querySelector('.nav-brand');
   let currentIndex = 0;
   let scrollCooldown = false;
+  let cooldownTimer = null;
+  let cooldownStart = 0;
+  const COOLDOWN_BASE = 700;
+  const COOLDOWN_MAX  = 2000;
+
+  function startCooldown() {
+    scrollCooldown = true;
+    cooldownStart  = Date.now();
+    clearTimeout(cooldownTimer);
+    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, COOLDOWN_BASE);
+  }
+
+  function extendCooldown() {
+    if (Date.now() - cooldownStart >= COOLDOWN_MAX) { scrollCooldown = false; return; }
+    clearTimeout(cooldownTimer);
+    cooldownTimer = setTimeout(() => { scrollCooldown = false; }, COOLDOWN_BASE);
+  }
 
   // ── Page-flip indicator ───────────────────────────────────────
   const pfiEl   = document.getElementById('page-flip-indicator');
@@ -499,7 +516,7 @@
   }
 
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) { e.preventDefault(); return; }
+    if (scrollCooldown) { e.preventDefault(); extendCooldown(); return; }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom    = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
@@ -523,10 +540,9 @@
     if (boundaryAccum < FLIP_THRESHOLD) return;
 
     resetBoundary();
-    scrollCooldown = true;
+    startCooldown();
     history.pushState(null, '', `#${panelOrder[next]}`);
     showPanel(panelOrder[next], dir < 0);
-    setTimeout(() => { scrollCooldown = false; }, 700);
   });
 
   // Browser back/forward
