@@ -486,7 +486,7 @@
   const FLIP_THRESHOLD = 400;
 
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) return;
+    if (scrollCooldown) { e.preventDefault(); return; }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom    = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
@@ -512,7 +512,7 @@
     history.pushState(null, '', `#${panelOrder[next]}`);
     showPanel(panelOrder[next], dir < 0);
     setTimeout(() => { scrollCooldown = false; }, 700);
-  }, { passive: true });
+  });
 
   // Browser back/forward
   window.addEventListener('popstate', () => {
