@@ -537,7 +537,7 @@
     wheelIdleTimer = setTimeout(cancelFlip, WHEEL_IDLE);
 
     startFlip(dir, next);
-  });
+  }, { passive: false });
 
   // Browser back/forward
   window.addEventListener('popstate', () => {
