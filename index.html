@@ -377,7 +377,6 @@
   const navBrand   = document.querySelector('.nav-brand');
   let currentIndex = 0;
   let scrollCooldown = false;
-  let absorbBudget   = 0;
 
   // ── Page-flip indicator ───────────────────────────────────────
   const pfiEl   = document.getElementById('page-flip-indicator');
@@ -500,12 +499,7 @@
   }
 
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) {
-      e.preventDefault();
-      absorbBudget -= Math.abs(e.deltaY);
-      if (absorbBudget <= 0) { scrollCooldown = false; }
-      return;
-    }
+    if (scrollCooldown) { e.preventDefault(); return; }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom    = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
@@ -530,7 +524,7 @@
 
     resetBoundary();
     scrollCooldown = true;
-    absorbBudget   = FLIP_THRESHOLD;
+    setTimeout(() => { scrollCooldown = false; }, 1000);
     history.pushState(null, '', `#${panelOrder[next]}`);
     showPanel(panelOrder[next], dir < 0);
   });
