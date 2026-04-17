@@ -47,8 +47,8 @@ em { font-style: italic; }
   top: 0;
   left: var(--nav-width);
   right: 0;
-  height: 9rem;
-  background: linear-gradient(to bottom, var(--bg) 5.5rem, transparent);
+  height: 6rem;
+  background: linear-gradient(to bottom, var(--bg) 2.5rem, transparent);
   pointer-events: none;
   z-index: 50;
 }
