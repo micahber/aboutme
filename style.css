@@ -502,3 +502,13 @@ h2 {
   stroke-dasharray: 75.4;       /* 2π × 12 */
   stroke-dashoffset: 75.4;
 }
+.pfi-arrow {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: none;
+}
+#page-flip-indicator.dir-down .pfi-arrow-down { display: block; }
+#page-flip-indicator.dir-up   .pfi-arrow-up   { display: block; }
