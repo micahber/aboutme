@@ -375,13 +375,10 @@
   const WHEEL_IDLE      = 150; // ms of no scroll events = user stopped
   const COOLDOWN_IDLE   = 150; // ms of no wheel events after flip = momentum settled
 
-  function onCooldownScroll() {
-    if (window.scrollY !== 0) window.scrollTo(0, 0);
-  }
   function endCooldown() {
     clearTimeout(cooldownIdleTimer);
     scrollCooldown = false;
-    window.removeEventListener('scroll', onCooldownScroll);
+    document.documentElement.style.overflow = '';
   }
   function extendCooldown() {
     clearTimeout(cooldownIdleTimer);
@@ -406,7 +403,7 @@
       if (p < 1) { flipRaf = requestAnimationFrame(tick); return; }
       flipRaf = null;
       scrollCooldown = true;
-      window.addEventListener('scroll', onCooldownScroll, { passive: true });
+      document.documentElement.style.overflow = 'hidden';
       extendCooldown();
       history.pushState(null, '', `#${panelOrder[next]}`);
       showPanel(panelOrder[next], dir < 0);
