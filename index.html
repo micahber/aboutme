@@ -367,11 +367,9 @@
   let flipDir         = 0;
   let flipNext        = -1;
   let flipAccum       = 0;
-  let wheelIdleTimer    = null;
   let cooldownIdleTimer = null;
   const WHEEL_FLIP_THRESHOLD = 400; // px of deltaY needed to flip
-  const WHEEL_IDLE           = 150; // ms of no scroll events = user stopped
-  const COOLDOWN_IDLE        = 150; // ms of no wheel events after flip = momentum settled
+  const COOLDOWN_IDLE        = 500; // ms of no wheel events after flip = momentum settled
 
   function endCooldown() {
     clearTimeout(cooldownIdleTimer);
@@ -384,7 +382,6 @@
   }
 
   function cancelFlip() {
-    clearTimeout(wheelIdleTimer);
     flipDir = 0; flipNext = -1; flipAccum = 0;
     updateIndicator(0, 0);
   }
@@ -527,10 +524,6 @@
 
     const next = currentIndex + dir;
     if (next < 0 || next >= panelOrder.length) { cancelFlip(); return; }
-
-    // Restart idle countdown so we cancel if scrolling stops mid-fill
-    clearTimeout(wheelIdleTimer);
-    wheelIdleTimer = setTimeout(cancelFlip, WHEEL_IDLE);
 
     startFlip(dir, next, e.deltaY);
   }, { passive: false });
