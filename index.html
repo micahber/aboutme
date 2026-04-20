@@ -525,7 +525,7 @@
 
   // ── Scroll wheel ──────────────────────────────────────────────
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) { e.preventDefault(); extendCooldown(); return; }
+    if (scrollCooldown) { if (Math.abs(e.deltaY) < 4) extendCooldown(); return; }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom   = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
