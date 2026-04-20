@@ -73,24 +73,27 @@ em { font-style: italic; }
   z-index: 100;
 }
 
-.nav-brand {
-  position: absolute;
-  top: 2rem;
-  left: 2.5rem;
+.nav-brand, .mobile-brand {
   font-family: var(--display);
   font-weight: 300;
   font-variation-settings: 'opsz' 36;
-  font-size: 1.05rem;
   letter-spacing: -0.02em;
-  line-height: 1.15;
   color: var(--text);
   text-decoration: none;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
-.nav-brand.visible       { opacity: 1; pointer-events: auto; }
-.nav-brand.visible:hover { opacity: 0.6; }
+.nav-brand.visible,       .mobile-brand.visible       { opacity: 1; pointer-events: auto; }
+.nav-brand.visible:hover, .mobile-brand.visible:hover { opacity: 0.6; }
+
+.nav-brand {
+  position: absolute;
+  top: 2rem;
+  left: 2.5rem;
+  font-size: 1.05rem;
+  line-height: 1.15;
+}
 
 .nav-links {
   display: flex;
@@ -123,11 +126,6 @@ em { font-style: italic; }
 .nav-links a.active { color: var(--text); opacity: 1; }
 .nav-links a.active::before { width: 28px; background: var(--accent); }
 
-.panel-footer {
-  margin-top: 3rem;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
 
 @media (max-width: 760px) {
   .sidenav { display: none; }
@@ -197,14 +195,6 @@ h2 {
 #about { padding-top: clamp(4rem, 18vh, 10rem); }
 
 .about-name {
-  font-family: var(--display);
-  font-style: normal;
-  font-weight: 300;
-  font-variation-settings: 'opsz' 36;
-  font-size: clamp(1.6rem, 3vw, 2rem);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--text);
   margin-bottom: 2.25rem;
 }
 
@@ -295,23 +285,10 @@ h2 {
 .project-name a         { color: var(--text); }
 
 .project-item p  { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
-.project-link    { font-size: 0.8rem; margin-left: 0.3rem; }
 
 /* ─────────────────────────────────────────
    WRITING PANEL
    ───────────────────────────────────────── */
-.writing-placeholder-note {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  max-width: 32rem;
-  line-height: 1.75;
-  font-style: italic;
-  padding: 1.75rem 2rem;
-  border: 1px dashed var(--border);
-  border-radius: 10px;
-  margin-bottom: 2.5rem;
-}
-
 .writing-intro {
   font-size: 0.9rem;
   color: var(--text-muted);
@@ -376,6 +353,8 @@ h2 {
 }
 .contact-social a:hover { color: var(--text); }
 
+.cert-section { margin-top: 3rem; }
+
 /* ─────────────────────────────────────────
    MOBILE NAV
    ───────────────────────────────────────── */
@@ -393,19 +372,8 @@ h2 {
 }
 
 .mobile-brand {
-  font-family: var(--display);
-  font-weight: 300;
-  font-variation-settings: 'opsz' 36;
   font-size: 1rem;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  text-decoration: none;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
 }
-.mobile-brand.visible       { opacity: 1; pointer-events: auto; }
-.mobile-brand.visible:hover { opacity: 0.6; }
 
 .mobile-menu-toggle {
   display: flex;
@@ -468,7 +436,6 @@ h2 {
   #about            { padding-top: 2.5rem; }
 
   .project-item     { grid-template-columns: 4rem 1fr; gap: 0.75rem; }
-  .contact-methods  { max-width: 100%; }
   .about-photo img  { width: 160px; height: 160px; }
 }
 
