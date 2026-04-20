@@ -418,13 +418,14 @@
 
   function updateIndicator(progress, dir) {
     if (progress <= 0) {
-      pfiEl.classList.remove('visible', 'dir-down', 'dir-up');
+      pfiEl.classList.remove('visible', 'dir-down', 'dir-up', 'firing');
       pfiArc.style.strokeDashoffset = PFI_C;
     } else {
       pfiEl.classList.add('visible');
       pfiEl.classList.toggle('at-top', dir < 0);
       pfiEl.classList.toggle('dir-down', dir > 0);
       pfiEl.classList.toggle('dir-up',   dir < 0);
+      pfiEl.classList.toggle('firing', progress >= 1);
       pfiArc.style.strokeDashoffset = PFI_C * (1 - Math.min(progress, 1));
     }
   }

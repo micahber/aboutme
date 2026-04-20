@@ -481,6 +481,9 @@ h2 {
   stroke-linecap: round;
   stroke-linejoin: round;
   display: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 #page-flip-indicator.dir-down .pfi-arrow-down { display: block; }
 #page-flip-indicator.dir-up   .pfi-arrow-up   { display: block; }
+#page-flip-indicator.firing .pfi-arrow-down { transform: translateY(6px); opacity: 0; }
+#page-flip-indicator.firing .pfi-arrow-up   { transform: translateY(-6px); opacity: 0; }
