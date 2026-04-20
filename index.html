@@ -365,15 +365,14 @@
   const navBrand   = document.querySelector('.nav-brand');
   let currentIndex = 0;
   let scrollCooldown  = false;
-  let flipRaf         = null;
-  let flipStart       = null;
   let flipDir         = 0;
   let flipNext        = -1;
+  let flipAccum       = 0;
   let wheelIdleTimer    = null;
   let cooldownIdleTimer = null;
-  const FLIP_DURATION   = 1000; // ms to fill donut before flipping
-  const WHEEL_IDLE      = 150; // ms of no scroll events = user stopped
-  const COOLDOWN_IDLE   = 150; // ms of no wheel events after flip = momentum settled
+  const WHEEL_FLIP_THRESHOLD = 400; // px of deltaY needed to flip
+  const WHEEL_IDLE           = 150; // ms of no scroll events = user stopped
+  const COOLDOWN_IDLE        = 150; // ms of no wheel events after flip = momentum settled
 
   function endCooldown() {
     clearTimeout(cooldownIdleTimer);
@@ -386,29 +385,24 @@
   }
 
   function cancelFlip() {
-    if (flipRaf) { cancelAnimationFrame(flipRaf); flipRaf = null; }
     clearTimeout(wheelIdleTimer);
-    flipStart = null; flipDir = 0; flipNext = -1;
+    flipDir = 0; flipNext = -1; flipAccum = 0;
     updateIndicator(0, 0);
   }
 
-  function startFlip(dir, next) {
-    if (flipRaf && flipDir === dir) return; // already running this direction
+  function startFlip(dir, next, delta) {
+    if (dir !== flipDir) { flipAccum = 0; flipDir = dir; flipNext = next; }
+    flipAccum = Math.max(0, flipAccum + delta * dir);
+    const p = Math.min(flipAccum / WHEEL_FLIP_THRESHOLD, 1);
+    updateIndicator(p, dir);
+    if (p < 1) return;
+    const target = flipNext;
     cancelFlip();
-    flipDir = dir; flipNext = next;
-    flipStart = performance.now();
-    function tick(now) {
-      const p = Math.min((now - flipStart) / FLIP_DURATION, 1);
-      updateIndicator(p, dir);
-      if (p < 1) { flipRaf = requestAnimationFrame(tick); return; }
-      flipRaf = null;
-      scrollCooldown = true;
-      document.documentElement.style.overflow = 'hidden';
-      extendCooldown();
-      history.pushState(null, '', `#${panelOrder[next]}`);
-      showPanel(panelOrder[next], dir < 0);
-    }
-    flipRaf = requestAnimationFrame(tick);
+    scrollCooldown = true;
+    document.documentElement.style.overflow = 'hidden';
+    extendCooldown();
+    history.pushState(null, '', `#${panelOrder[target]}`);
+    showPanel(panelOrder[target], dir < 0);
   }
 
   // ── Page-flip indicator ───────────────────────────────────────
@@ -539,7 +533,7 @@
     clearTimeout(wheelIdleTimer);
     wheelIdleTimer = setTimeout(cancelFlip, WHEEL_IDLE);
 
-    startFlip(dir, next);
+    startFlip(dir, next, e.deltaY);
   }, { passive: false });
 
   // ── Touch navigation (mobile) ─────────────────────────────────
