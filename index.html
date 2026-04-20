@@ -153,7 +153,7 @@
       <div class="project-item">
         <span class="project-year">2026</span>
         <div><span class="project-name"><a href="https://wrld.li" target="_blank">wrld.li ↗</a></span>
-        <p>Built travel tools I'd always wanted.</p></div>
+        <p>Built a suite of travel tools that I've always wanted.</p></div>
       </div>
 
       <div class="project-item">
@@ -171,7 +171,7 @@
       <div class="project-item">
         <span class="project-year">2023–now</span>
         <div><span class="project-name">Startup</span>
-        <p>At first an unpaid side hustle, most of my project energy was focused here.</p></div>
+        <p>Ezra was an unpaid side hustle to start, so most of my project energy was focused here.</p></div>
       </div>
 
       <div class="project-item">
@@ -381,9 +381,20 @@
   let flipStart       = null;
   let flipDir         = 0;
   let flipNext        = -1;
-  let wheelIdleTimer  = null;
-  const FLIP_DURATION = 500; // ms to fill donut before flipping
-  const WHEEL_IDLE    = 150; // ms of no scroll events = user stopped
+  let wheelIdleTimer    = null;
+  let cooldownIdleTimer = null;
+  const FLIP_DURATION   = 500; // ms to fill donut before flipping
+  const WHEEL_IDLE      = 150; // ms of no scroll events = user stopped
+  const COOLDOWN_IDLE   = 150; // ms of no wheel events after flip = momentum settled
+
+  function endCooldown() {
+    clearTimeout(cooldownIdleTimer);
+    scrollCooldown = false;
+  }
+  function extendCooldown() {
+    clearTimeout(cooldownIdleTimer);
+    cooldownIdleTimer = setTimeout(endCooldown, COOLDOWN_IDLE);
+  }
 
   function cancelFlip() {
     if (flipRaf) { cancelAnimationFrame(flipRaf); flipRaf = null; }
@@ -403,7 +414,7 @@
       if (p < 1) { flipRaf = requestAnimationFrame(tick); return; }
       flipRaf = null;
       scrollCooldown = true;
-      setTimeout(() => { scrollCooldown = false; }, 1000);
+      extendCooldown();
       history.pushState(null, '', `#${panelOrder[next]}`);
       showPanel(panelOrder[next], dir < 0);
     }
@@ -442,6 +453,7 @@
     if (activeLink) activeLink.classList.add('active');
 
     navBrand.classList.toggle('visible', id !== 'about');
+    document.querySelector('.mobile-brand').classList.toggle('visible', id !== 'about');
 
     document.querySelectorAll('.mobile-menu-overlay a').forEach(l => l.classList.remove('active'));
     const mobileActiveLink = document.querySelector(`.mobile-menu-overlay a[href="#${id}"]`);
@@ -520,7 +532,7 @@
 
   // ── Scroll wheel ──────────────────────────────────────────────
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) { e.preventDefault(); return; }
+    if (scrollCooldown) { e.preventDefault(); extendCooldown(); return; }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom   = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
