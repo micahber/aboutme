@@ -48,7 +48,7 @@
 <div class="page-content">
 
   <!-- ── ABOUT ────────────────────────────── -->
-  <section class="panel active" id="about">
+  <section class="panel active" id="about" tabindex="-1">
 
     <h2 class="about-name">micah berman</h2>
 
@@ -82,7 +82,7 @@
   </section>
 
   <!-- ── PUBLICATIONS & TEACHING ────────────── -->
-  <section class="panel" id="scholarship">
+  <section class="panel" id="scholarship" tabindex="-1">
     <h2>Teaching</h2>
     <div class="pub-list">
 
@@ -145,7 +145,7 @@
   </section>
 
   <!-- ── PROJECTS ─────────────────────────── -->
-  <section class="panel" id="projects">
+  <section class="panel" id="projects" tabindex="-1">
     <h2>Selected projects</h2>
 
 <div class="project-list">
@@ -285,7 +285,7 @@
   </section>
 
   <!-- ── WRITING ──────────────────────────── -->
-  <section class="panel" id="writing">
+  <section class="panel" id="writing" tabindex="-1">
     <h2>Writing</h2>
 
     <p class="writing-intro">Musings on product and our world. For academic writing, see <a href="#scholarship">Scholarship</a>.</p>
@@ -308,7 +308,7 @@
   </section>
 
   <!-- ── GET IN TOUCH ──────────────────────── -->
-  <section class="panel contact-section" id="contact">
+  <section class="panel contact-section" id="contact" tabindex="-1">
     <h2>Get in touch</h2>
     <p>Drop me a line.</p>
 
@@ -454,6 +454,7 @@
 
     currentIndex = panelOrder.indexOf(id);
     window.scrollTo(0, 0);
+    el.focus({ preventScroll: true });
     cancelFlip();
   }
 
@@ -525,7 +526,7 @@
 
   // ── Scroll wheel ──────────────────────────────────────────────
   window.addEventListener('wheel', (e) => {
-    if (scrollCooldown) { e.preventDefault(); extendCooldown(); return; }
+    if (scrollCooldown) { extendCooldown(); return; }
     const dir = e.deltaY > 0 ? 1 : -1;
 
     const atBottom   = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
