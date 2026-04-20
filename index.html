@@ -369,7 +369,7 @@
   let flipAccum       = 0;
   let cooldownIdleTimer = null;
   const WHEEL_FLIP_THRESHOLD = 400; // px of deltaY needed to flip
-  const COOLDOWN_IDLE        = 500; // ms of no wheel events after flip = momentum settled
+  const COOLDOWN_IDLE        = 375; // ms of no wheel events after flip = momentum settled
 
   function endCooldown() {
     clearTimeout(cooldownIdleTimer);
