@@ -378,6 +378,7 @@
   function endCooldown() {
     clearTimeout(cooldownIdleTimer);
     scrollCooldown = false;
+    document.documentElement.style.overflow = '';
   }
   function extendCooldown() {
     clearTimeout(cooldownIdleTimer);
@@ -402,6 +403,7 @@
       if (p < 1) { flipRaf = requestAnimationFrame(tick); return; }
       flipRaf = null;
       scrollCooldown = true;
+      document.documentElement.style.overflow = 'hidden';
       extendCooldown();
       history.pushState(null, '', `#${panelOrder[next]}`);
       showPanel(panelOrder[next], dir < 0);
