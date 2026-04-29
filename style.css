@@ -440,6 +440,28 @@ h2 {
 }
 
 /* ─────────────────────────────────────────
+   SCROLL BOUNDARY PULL ANIMATION
+   ───────────────────────────────────────── */
+@keyframes boundaryPullDown {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(12px); }
+  75%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+@keyframes boundaryPullUp {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-12px); }
+  75%  { transform: translateY(3px); }
+  100% { transform: translateY(0); }
+}
+.page-content.boundary-pull-down {
+  animation: boundaryPullDown 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.page-content.boundary-pull-up {
+  animation: boundaryPullUp 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* ─────────────────────────────────────────
    PAGE-FLIP INDICATOR
    ───────────────────────────────────────── */
 #page-flip-indicator {
