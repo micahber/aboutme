@@ -363,6 +363,36 @@
 </div>
 
 <script>
+  // ── Scroll boundary pull ─────────────────────────────────────
+  const pageContentEl = document.querySelector('.page-content');
+  let boundaryPullActive = false;
+  let touchOverscrollDir = 0;
+  let touchOverscrollDist = 0;
+
+  function triggerBoundaryPull(dir) {
+    if (boundaryPullActive) return;
+    boundaryPullActive = true;
+    const cls = dir > 0 ? 'boundary-pull-down' : 'boundary-pull-up';
+    pageContentEl.classList.remove('boundary-pull-down', 'boundary-pull-up');
+    void pageContentEl.offsetWidth;
+    pageContentEl.classList.add(cls);
+    setTimeout(() => {
+      pageContentEl.classList.remove(cls);
+      boundaryPullActive = false;
+    }, 500);
+  }
+
+  function springBackOverscroll() {
+    if (touchOverscrollDist === 0) return;
+    pageContentEl.style.transition = 'transform 0.5s cubic-bezier(0.33, 1, 0.68, 1)';
+    pageContentEl.style.transform = 'translateY(0)';
+    setTimeout(() => {
+      pageContentEl.style.transition = '';
+      touchOverscrollDist = 0;
+      touchOverscrollDir = 0;
+    }, 500);
+  }
+
   // ── Email obfuscation ─────────────────────────────────────────
   document.querySelectorAll('[data-e]').forEach(el => {
     const addr = atob(el.dataset.e);
@@ -512,7 +542,7 @@
       }
 
       const next = currentIndex + dir;
-      if (next < 0 || next >= panelOrder.length) return;
+      if (next < 0 || next >= panelOrder.length) { triggerBoundaryPull(dir); return; }
 
       if (dir !== arrowBoundaryDir) { arrowBoundaryCount = 0; arrowBoundaryDir = dir; }
       arrowBoundaryCount++;
@@ -543,7 +573,7 @@
     if (!atBoundary) { cancelFlip(); return; }
 
     const next = currentIndex + dir;
-    if (next < 0 || next >= panelOrder.length) { cancelFlip(); return; }
+    if (next < 0 || next >= panelOrder.length) { cancelFlip(); triggerBoundaryPull(dir); return; }
 
     startFlip(dir, next, e.deltaY);
   }, { passive: false });
@@ -578,6 +608,7 @@
       touchBoundaryY   = null;
       touchBoundaryDir = 0;
       cancelFlip();
+      springBackOverscroll();
       return;
     }
 
@@ -586,6 +617,15 @@
       touchBoundaryY   = null;
       touchBoundaryDir = 0;
       cancelFlip();
+      // Elastic overscroll: follow finger with resistance, spring back on release
+      if (dir !== touchOverscrollDir) {
+        touchOverscrollDir  = dir;
+        touchOverscrollDist = 0;
+        pageContentEl.style.transition = '';
+      }
+      touchOverscrollDist += Math.abs(dy) / 3;
+      pageContentEl.style.transform = `translateY(${dir * Math.min(touchOverscrollDist, 40)}px)`;
+      e.preventDefault();
       return;
     }
 
@@ -612,8 +652,8 @@
     }
   }, { passive: false });
 
-  window.addEventListener('touchend',    () => { touchBoundaryY = null; touchBoundaryDir = 0; if (!scrollCooldown) cancelFlip(); }, { passive: true });
-  window.addEventListener('touchcancel', () => { touchBoundaryY = null; touchBoundaryDir = 0; if (!scrollCooldown) cancelFlip(); }, { passive: true });
+  window.addEventListener('touchend',    () => { touchBoundaryY = null; touchBoundaryDir = 0; if (!scrollCooldown) cancelFlip(); springBackOverscroll(); }, { passive: true });
+  window.addEventListener('touchcancel', () => { touchBoundaryY = null; touchBoundaryDir = 0; if (!scrollCooldown) cancelFlip(); springBackOverscroll(); }, { passive: true });
 
   // Browser back/forward
   window.addEventListener('popstate', () => {
