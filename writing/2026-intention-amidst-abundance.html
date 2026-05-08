@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intention Amidst Abundance (2026) — Micah Berman</title>
+    <meta name="description" content="All that separates us from being victims of our own invention is intention." />
+    <meta name="author" content="Micah Berman" />
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <meta property="og:title" content="Intention Amidst Abundance (2026) — Micah Berman" />
+    <meta property="og:description" content="All that separates us from being victims of our own invention is intention." />
+    <meta property="og:type" content="article" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg:         #ffffff;
+        --bg-card:    #f7f5f2;
+        --text:       #1c1814;
+        --text-muted: #7c766e;
+        --accent:     #4a7459;
+        --border:     #d6cfc5;
+        --display:    'Fraunces', Georgia, serif;
+        --sans:       'DM Sans', system-ui, -apple-system, sans-serif;
+        --content-max: 660px;
+        --pad-x: clamp(1.5rem, 5vw, 3rem);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-weight: 400;
+        line-height: 1.75;
+        padding: 3rem var(--pad-x) 6rem;
+      }
+
+      a {
+        color: var(--text);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: var(--border);
+        transition: text-decoration-color 0.15s;
+      }
+      a:hover { text-decoration-color: var(--text); }
+
+      .back-link {
+        display: inline-block;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        text-decoration: none;
+        margin-bottom: 3rem;
+      }
+      .back-link:hover { color: var(--text); }
+      .back-link::before { content: "← "; }
+
+      article {
+        max-width: var(--content-max);
+        margin: 0 auto;
+      }
+
+      .article-header {
+        margin-bottom: 2.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      h1 {
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: clamp(1.6rem, 3vw, 2rem);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: var(--text);
+      }
+
+      .article-meta {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+      }
+
+      .article-body {
+        font-size: 1.05rem;
+        line-height: 1.85;
+      }
+
+      .article-body p { margin-bottom: 1.5rem; }
+      .article-body p:last-child { margin-bottom: 0; }
+
+      .article-body h2 {
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin: 2.5rem 0 0.75rem;
+        color: var(--text);
+      }
+
+      .article-body blockquote {
+        border-left: 3px solid var(--border);
+        padding-left: 1.25rem;
+        color: var(--text-muted);
+        font-style: italic;
+        margin: 1.5rem 0;
+      }
+
+      .article-body ul, .article-body ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.5rem;
+        list-style: disc;
+      }
+      .article-body ol { list-style: decimal; }
+      .article-body li { margin-bottom: 0.4rem; }
+
+      .article-note {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        font-style: italic;
+      }
+
+      .article-lede {
+        font-size: 1.15rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .footnote-ref {
+        font-size: 0.7em;
+        vertical-align: super;
+        line-height: 0;
+        color: var(--text-muted);
+        text-decoration: none;
+        margin-left: 1px;
+      }
+      .footnote-ref:hover { color: var(--text); }
+
+      .footnotes {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .footnotes ol {
+        padding-left: 1.5rem;
+        list-style: decimal;
+        margin-bottom: 0;
+      }
+
+      .footnotes li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footnotes a {
+        color: var(--text-muted);
+      }
+      .footnotes a:hover { color: var(--text); }
+
+      .footnote-back {
+        font-size: 0.85em;
+        text-decoration: none;
+        margin-left: 0.35rem;
+        color: var(--border);
+      }
+      .footnote-back:hover { color: var(--text-muted); }
+
+      @media (max-width: 600px) {
+        body { padding: 2rem 1.25rem 4rem; }
+        .back-link { margin-bottom: 2rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="back-link" href="../index.html#writing">Writing</a>
+
+    <article>
+      <header class="article-header">
+        <h1>Intention Amidst Abundance</h1>
+        <div class="article-meta">2026</div>
+      </header>
+
+      <div class="article-body">
+        <p>The Monkey's Paw<a href="#fn1" id="ref1" class="footnote-ref">1</a> is an age-old fable about how we ought to be careful about what we ask for – in case we have the misfortune of getting it. About 12,000 years ago, we moved from hunting and gathering to agricultural farms, beginning the creation of an abundance of food — today, we have well more than enough food to feed everyone (were it well-distributed)<a href="#fn2" id="ref2" class="footnote-ref">2</a> — more available, and more tempting, than ever. Today, roughly 43% of our world's adults are overweight or obese.<a href="#fn3" id="ref3" class="footnote-ref">3</a> To be sure, obesity is complex and multi-causal, and I'm not making claims about individual bodies or choices here – but on a global scale, food has become more abundant and more engineered for consumption than at any point in human history. To that end, we've developed GLP-1s, which make us feel full to help regulate how much we eat.<a href="#fn4" id="ref4" class="footnote-ref">4</a> Evolution is millennia too slow to keep up with our pace of technological advancement from the Neolithic; GLP-1s present one way that our bodies, and our society, can scaffold adaptation to the abundance of the Anthropocene. They are a limiter of choice that we, intrinsically, may not have, at least in sufficient strength relative to the new pulls exerted on us.</p>
+
+        <p>Industrialization is on a similar arc, offset a few thousand years: we, relatively suddenly, have more choice in what we buy. Going to buy toothpaste, the two primary manufacturers – Crest and Colgate – have managed to stock more than 50 varieties of the same product on an average grocery store's shelf. It's not just toothpaste: "between 1975 and 2008, the number of products in the average supermarket swelled from an average of 8,948 to almost 47,000."<a href="#fn5" id="ref5" class="footnote-ref">5</a> We aren't equipped to make sense of this variety — in how we're wired and in how many hours we have in the day — so advertising can fill the void. But we become addicted to the possibility. The internet capitalized on it.</p>
+
+        <p>The internet has driven the next arc, faster than the rest. No longer are you even limited by the 25 kinds of Crest on the local retailer's shelves — why even go to the store when you can order a formula personalized to your "oral microbiome", delivered to your door?<a href="#fn6" id="ref6" class="footnote-ref">6</a> Why wander the aisles of a paradoxically cramped local hardware store for the closest match when, instead, you can find the <em>precise</em> replacement screw you want on Amazon, ferried to your door minutes later? (I'm avoiding a raft of arguments about the economic consequences here, focusing just on choice). And, how can you feel good about <em>any</em> choice, when there was inevitably a better one out there?<a href="#fn7" id="ref7" class="footnote-ref">7</a></p>
+
+        <p>It's the same for <em>content</em> and <em>ideas</em>. While always the "land of opportunity", there were barriers to getting your book published or your magazine printed – you might publish your zine, but it couldn't go far; and getting into Time magazine or publishing your own of national circulation was a herculean effort. These barriers were certainly not equitable, but they did reduce the noise. The internet allows <em>anyone</em> to publish content for the world to see. This at once means we can find fringe views to support ours in person or offline (an "echo chamber"), but also means we can be much more exposed to <em>opposing</em> views (previously, your only option might've been the newspaper's opinions columnist, and whatever views they happened to hold).<a href="#fn8" id="ref8" class="footnote-ref">8</a></p>
+
+        <p>There's just <em>more</em>, so we needed software to help manage it: Outlook to tame our inboxes, digital calendars to manage our schedules. Now, enter the age of AI, and we spin up another arc, again faster than the last. Now there is <em>more</em> content – not only can anyone publish what they write, but anyone can have an entire nation's worth of virtual writers working at their behest. There was a proliferation of software in the internet age – now, that mass-produced software will be replaced by customized versions, bespoke for every person and their use-case. Why use the off-the-shelf task list software, when you can have Claude compose one just for you in a few minutes, for less than the cost of a latte (and certainly less than your subscription to the tool you use today). Now, there are so many tools that we need tools to manage our tools, and then tools to manage the managers.</p>
+
+        <p>The most significant remaining question is: why? We are not evolved to cope with this level of stimulus — our poor human brains are from a long bygone era. And we don't yet have an antidote — a GLP-1 for dopamine addiction — to help us grab the reins of the hamster wheel as a society. The story isn't clear cut – fundamentally, I believe that technology has made our life better: it's helped us live longer, connect with loved ones, and express our creativity. But technology is never an ends, only a means; and, without a sight on the horizon of where we want to go as a species, choosing well becomes the skill of most meaning and, perhaps, of real value. All that separates us from being victims of our own invention is intention.</p>
+
+        <p>At home, I'm thinking increasingly about how I add soft limits to my life: limits in how much and what I commit to, what and how I read, how and what I consume generally. And at work, I believe that, as the cost of <em>how</em> moves toward zero thanks to continually advancing AI, the <em>why</em> and <em>what</em> we choose to work on becomes more important than ever. The figuring out what is really important, the accountability to hold fast to it — that's on me, and it's in my control.</p>
+
+        <div class="footnotes">
+          <ol>
+            <li id="fn1"><a href="https://www.btboces.org/Downloads/6_The%20Monkeys%20Paw%20by%20WW%20Jacobs.pdf">"The Monkey's Paw,"</a> W. W. Jacobs (full text). <a href="#ref1" class="footnote-back">↩</a></li>
+            <li id="fn2"><a href="https://www.unep.org/news-and-stories/story/how-feed-10-billion-people">"How to Feed 10 Billion People,"</a> UNEP. <a href="#ref2" class="footnote-back">↩</a></li>
+            <li id="fn3"><a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight">Obesity and Overweight fact sheet,</a> WHO. <a href="#ref3" class="footnote-back">↩</a></li>
+            <li id="fn4"><a href="https://my.clevelandclinic.org/health/treatments/13901-glp-1-agonists">GLP-1 Agonists,</a> Cleveland Clinic. <a href="#ref4" class="footnote-back">↩</a></li>
+            <li id="fn5"><a href="https://www.consumerreports.org/cro/magazine/2014/03/too-many-product-choices-in-supermarkets/index.htm">"Too Many Product Choices in Supermarkets,"</a> Consumer Reports (2014). <a href="#ref5" class="footnote-back">↩</a></li>
+            <li id="fn6"><a href="https://www.viome.com/products/vrx-toothpaste-gel">Viome VRx Toothpaste Gel.</a> <a href="#ref6" class="footnote-back">↩</a></li>
+            <li id="fn7"><a href="https://en.wikipedia.org/wiki/The_Paradox_of_Choice"><em>The Paradox of Choice,</em></a> Wikipedia. <a href="#ref7" class="footnote-back">↩</a></li>
+            <li id="fn8"><a href="https://sloanreview.mit.edu/article/twitter-is-not-the-echo-chamber-we-think-it-is/">"Twitter Is Not the Echo Chamber We Think It Is,"</a> MIT Sloan Management Review. <a href="#ref8" class="footnote-back">↩</a></li>
+          </ol>
+        </div>
+      </div>
+    </article>
+  </body>
+</html>
